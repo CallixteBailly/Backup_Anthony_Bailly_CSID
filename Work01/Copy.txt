@@ -1,0 +1,3 @@
+cp F:\Users\Bla\workspace\Work01\Source1\C.txt F:\Users\Bla\workspace\Work01\Source2\C.txt 
+rm F:\Users\Bla\workspace\Work01\Source2\D.txt 
+rm F:\Users\Bla\workspace\Work01\Source2\B.txt 
