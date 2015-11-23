@@ -22,6 +22,7 @@ public class Main {
 		File source2 = null;
 		TreeMap<String, List<String>> treeMapS1 = new TreeMap<String,List<String>>();
 		TreeMap<String, List<String>> treeMapS2 = new TreeMap<String,List<String>>();
+		List<String> lsH = new ArrayList<String>();
 		String nameDirectory1 = null, nameDirectory2 = null ;
 		
 		JFileChooser dialogue = new JFileChooser(".");
@@ -42,36 +43,21 @@ public class Main {
 			source2 = dialogue2.getSelectedFile();
 	        source2 = new File(source2.getPath());
 		}
-        nameDirectory1 = source1.getName();
-        nameDirectory2 = source2.getName();
+	        nameDirectory1 = source1.getName();
+	        nameDirectory2 = source2.getName();
         
 		recursiveScanDir(source1, treeMapS1);
 
 		recursiveScanDir(source2, treeMapS2);
 		
-		compareTree(treeMapS1, treeMapS2,nameDirectory1,nameDirectory2);
-
-	}
-	public static TreeMap<String,<List<String>> recursiveScanDirTest(File file, TreeMap<String,List<String>> tree)
-	{
-		for (File f : file.listFiles()){
-			if(f.isDirectory())
-			{
-				recursiveScanDir(f,tree)
-			}
-			else
-			{
-				String sha1 = sha1(f);
-				if(l.empty)
-				{
-					l = new ArrayList<String>();
-					tree.put(sha1, l);
-				}
-				l.put(f.gethPath());
-				tree.put(sha1,l);
-			}
+		compareTree(treeMapS1, treeMapS2,nameDirectory1,nameDirectory2,lsH);
+		
+		System.out.println("-------HISTORY---------");
+		
+		for (String string : lsH) {
+			System.out.println(" - > " + string);
 		}
-		return tree;
+
 	}
 	public static void recursiveScanDir(File file,TreeMap<String, List<String>> tree)
 	{
@@ -120,7 +106,7 @@ public class Main {
 				System.out.println("----------------------------------------------------");
 		}
 	}
-	public static void compareTree(TreeMap<String, List<String>> tree,TreeMap<String, List<String>> tree2, String nameDirectory1, String nameDirectory2)
+	public static void compareTree(TreeMap<String, List<String>> tree,TreeMap<String, List<String>> tree2, String nameDirectory1, String nameDirectory2, List<String> history)
 	{
 		FileWriter writer = null;
     	File nomFichier = new File("Copy.txt");
@@ -141,6 +127,7 @@ public class Main {
 				for (String string : m.getValue()) {
 					System.out.println("Keys add =>  " + m.getKey());
 					try {
+						history.add("cp " + string + " " + string.replace(nameDirectory1, nameDirectory2));
 						writer.write("cp " + string + " " + string.replace(nameDirectory1, nameDirectory2) + " " + newLine);
 					} catch (IOException e) {
 						e.printStackTrace();
@@ -157,6 +144,7 @@ public class Main {
 				for (String string : m2.getValue()) {
 					System.out.println("Keys add => " + m2.getKey());
 					try {
+						history.add("rm " + string.replace(nameDirectory1, nameDirectory2));
 						writer.write("rm " + string.replace(nameDirectory1, nameDirectory2) + " " + newLine);
 					} catch (IOException e) {
 						e.printStackTrace();
