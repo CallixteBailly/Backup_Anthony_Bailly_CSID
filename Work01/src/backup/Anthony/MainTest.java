@@ -31,10 +31,13 @@ public class MainTest {
 		
 		// Post-check
 		assertEquals(3, tree.size());
+		assertEquals(2, keyBE.size());
 		assertEquals("F:\\Users\\Bla\\workspace\\Work01\\Source1\\SousDossier\\B.txt", keyBE.get(0));
 		assertEquals("F:\\Users\\Bla\\workspace\\Work01\\Source1\\SousDossier\\E.txt", keyBE.get(1));
 		
+		assertEquals(1,keyA.size());
 		assertEquals("F:\\Users\\Bla\\workspace\\Work01\\Source1\\SousDossier\\A.txt", keyA.get(0));
+		assertEquals(1,keyC.size());
 		assertEquals("F:\\Users\\Bla\\workspace\\Work01\\Source1\\C.txt", keyC.get(0));
 		
 		
