@@ -52,6 +52,27 @@ public class Main {
 		compareTree(treeMapS1, treeMapS2,nameDirectory1,nameDirectory2);
 
 	}
+	public static TreeMap<String,<List<String>> recursiveScanDirTest(File file, TreeMap<String,List<String>> tree)
+	{
+		for (File f : file.listFiles()){
+			if(f.isDirectory())
+			{
+				recursiveScanDir(f,tree)
+			}
+			else
+			{
+				String sha1 = sha1(f);
+				if(l.empty)
+				{
+					l = new ArrayList<String>();
+					tree.put(sha1, l);
+				}
+				l.put(f.gethPath());
+				tree.put(sha1,l);
+			}
+		}
+		return tree;
+	}
 	public static void recursiveScanDir(File file,TreeMap<String, List<String>> tree)
 	{
 		System.out.println("-------------FILES---------------");
