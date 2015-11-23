@@ -19,7 +19,7 @@ public class MainTest {
   public void recursiveDir()
   {
     //TreeMap<String,List<String>> res = new TreeMap<String, List<String>>();
-    //recursivescanDir(source1,res);
+    //res = recursivescanDir(source1,res);
     //Assert.assertEquals(":F\Users\WorkSpace\Work01\Source1\C.txt",res)
   }
 
