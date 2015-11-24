@@ -182,22 +182,6 @@ public class Main {
 		}
 		        return localSha1Sum;
 		}
-	  private static String convertToHex(byte[] bytes) 
-	  { 
-	        StringBuffer buf = new StringBuffer();
-	        for (int i = 0; i < bytes.length; i++) { 
-	            int halfbyte = (bytes[i] >>> 4) & 0x0F;
-	            int two_halfs = 0;
-	            do { 
-	                if ((0 <= halfbyte) && (halfbyte <= 9)) 
-	                    buf.append((char) ('0' + halfbyte));
-	                else 
-	                    buf.append((char) ('a' + (halfbyte - 10)));
-	                halfbyte = bytes[i] & 0x0F;
-	            } while(two_halfs++ < 1);
-	        } 
-	        return buf.toString();
-	    } 
 		private static String getHexString(byte[] bytes) {
 			StringBuilder sb = new StringBuilder(bytes.length*2);
 			for (byte b : bytes) {
